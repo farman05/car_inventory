@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="card-body">
+    Car Model Listing
+  </div>
+</div>
+<div class="addButton">
+  <a class="btn btn-primary btn-sm" routerLink='/addModel'> Add Model</a>
+</div>
+
+<div class="modelList" *ngIf="modelList">
+  <table datatable [dtOptions]="dtOptions" class="row-border hover manufacturerList">
+    <thead>
+      <tr>
+        <th>Sr No</th>
+        <th>Manufacturer Name</th>
+        <th>Model Name</th>
+        <th>Count</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let model of modelList;let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{model.manufacturer_name}}</td>
+        <td>{{model.name}}</td>
+        <td>{{model.quantity}}</td>
+        <td>
+          <button class="btn btn-sm btn-success" (click)="view(i)" data-toggle="modal" data-target="#viewModal">&nbsp;&nbsp;View&nbsp;&nbsp;</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">View Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #close>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="success" class="alert alert-success box-msg" role="alert">
+        {{msg}}
+      </div>
+      <div *ngIf="error" class="alert alert-danger box-msg" role="alert">
+        {{msg}}
+      </div>
+      <div *ngIf="selectedData " class="viewContainer">
+        <div *ngFor="let data of selectedData;let i = index">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Manufacturer Name</label> 
+              <input type="text" class="form-control" value = "{{data.manufacturer_name}}"   readonly/>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Model Name</label> 
+              <input type="text" class="form-control" value = "{{data.name}}"   readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Model Color</label> 
+              <input type="text" class="form-control" value = "{{data.color_name}}"   readonly/>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Manufacturing Year </label> 
+              <input type="text" class="form-control" value = "{{data.manufacturing_year}}"   readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Registration Number</label> 
+              <input type="text" class="form-control" value = "{{data.registration_number}}"   readonly/>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Quantity</label> 
+              <input type="text" class="form-control" value = "{{data.quantity}}"   readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label>Note</label> 
+              <input type="text" class="form-control" value = "{{data.note}}"   readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <button class="btn btn-md btn-primary sold" [disabled] = "disabled"  (click) = "sold(data.id)" >Sold</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

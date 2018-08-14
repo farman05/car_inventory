@@ -1,0 +1,27 @@
+.loginContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100vh;
+    background: url('https://infipost.com/wp-content/uploads/2017/03/ugur-sahin-design-project-f-ferrari-458-concept-wide.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#loginPage{
+    background:#f1c073;
+    /* padding: 10%; */
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    text-align: center;
+    -webkit-box-shadow: 13px -7px 33px 8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 13px -7px 33px 8px rgba(0,0,0,0.75);
+    box-shadow: 13px -7px 33px 8px rgba(0,0,0,0.75);
+
+}
+
+.login{
+    margin:10%
+}

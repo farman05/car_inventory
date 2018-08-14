@@ -1,0 +1,110 @@
+<div class="card">
+  <div class="card-body">
+    Add Car Model
+  </div>
+</div>
+
+<div>
+  <form [formGroup]="addModelForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+      <div *ngIf="success" class="alert alert-success box-msg" role="alert">
+        {{msg}}
+      </div>
+      <div *ngIf="error" class="alert alert-danger box-msg" role="alert">
+        {{msg}}
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Model Name</label>
+          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+          <div *ngIf="submitted && f.name.errors" class="error">
+            <div *ngIf="f.name.errors.required">Model Name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Manufacturer Name</label>
+          <div class="input-group" *ngIf = "manufacturers">
+              <select class="custom-select" formControlName="manufacturer_id" [ngClass]="{ 'is-invalid': submitted && f.manufacturer_id.errors }"   id="" aria-label="Example select with button addon">
+                <option value = "" selected>Choose Manufacturer</option>
+                <option *ngFor="let manufacturer of manufacturers" value="{{manufacturer.id}}">{{manufacturer.name}}</option>
+
+              </select>
+          </div>
+          <div *ngIf="submitted && f.manufacturer_id.errors" class="error">
+            <div *ngIf="f.manufacturer_id.errors.required">Model Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-6">
+            <label>Registration Number</label>
+            <input type="text" formControlName="registration_number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.registration_number.errors }" />
+
+            <div *ngIf="submitted && f.registration_number.errors" class="error">
+              <div *ngIf="f.registration_number.errors.required">Registration Number is required</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Model Color</label>
+            <div class="input-group" *ngIf = "colors.length">
+                <select class="custom-select" formControlName="color_id" id="" [ngClass]="{ 'is-invalid': submitted && f.color_id.errors }" aria-label="Example select with button addon">
+                  <option value="" selected>Choose Color</option>
+                  <option *ngFor="let color of colors" value="{{color.id}}">{{color.name}}</option>
+                  
+                </select>
+            </div>
+          
+            <div *ngIf="submitted && f.color_id.errors" class="error">
+              <div *ngIf="f.color_id.errors.required">Color is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+              <label>Quantity</label>
+              <input type="number" formControlName="quantity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+              <div *ngIf="submitted && f.quantity.errors" class="error">
+                <div *ngIf="f.quantity.errors.required">Model Quantity is required</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Manufacturing Year</label>
+              <div class="input-group" *ngIf = "yearArray.length">
+                  <select   class="custom-select" formControlName="manufacturing_year" [ngClass]="{ 'is-invalid': submitted && f.manufacturing_year.errors }" id="" aria-label="Example select with button addon">
+                     <option value="">Choose a year</option>
+                    <option *ngFor = "let year of yearArray" value = "{{year}}">{{year}}</option>                   
+                  </select>
+              </div>
+              <div *ngIf="submitted && f.manufacturing_year.errors" class="error">
+                <div *ngIf="f.manufacturing_year.errors.required">Manufacturing Year is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="form-group col-md-12">
+                <label>Note</label>
+                <textarea class="form-control" [ngClass]="{ 'is-invalid': submitted && f.note.errors }" formControlName="note" aria-label="With textarea"></textarea>
+                <div *ngIf="submitted && f.note.errors"  class="error">
+                  <div *ngIf="f.note.errors.required">Note is required</div>
+                </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="exampleFormControlFile1">Select an Image</label>
+              <input type="file" name="file"  class="form-control-file" accept="image/gif, image/jpeg, image/png" (change)="onFileChanged($event)" [ngClass]="{ 'is-invalid': submitted && f.note.errors }" id="exampleFormControlFile1">
+              <div *ngIf="submitted && f.file.errors"  class="error">
+                  <div *ngIf="f.file.errors.required">Image is required</div>
+                </div>
+          </div>
+          <div class="row" *ngIf = "imgSelected">
+              <div class="col-md-6" *ngIf = "imageSrc">
+                  <img class="dummyImage" [src]="imageSrc || 'http://placehold.it/180'" alt="your image" />
+              </div>
+          </div>
+         
+    </div>
+    <div class="form-group saveBtn">
+      <button [disabled]="disabled" class="btn btn-primary btn-md">Save</button>
+    </div>
+  </form>
+</div>
