@@ -11,8 +11,9 @@
 }
 
 .imageUrl{
-    height: 60px;
+    height: auto;
     max-width: 100%;
+    width: 100%;
 }
 
 .imageContainer{
