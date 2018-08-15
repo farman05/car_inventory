@@ -24,6 +24,7 @@ export class AddModelComponent implements OnInit {
   success: boolean;
   error: boolean;
   msg: String;
+  disabled;
   ngOnInit() {
     this.addModelForm = this.formbuilder.group({
               manufacturer_id: ['', Validators.required],
@@ -53,8 +54,11 @@ export class AddModelComponent implements OnInit {
             uploadData.append(key, this.addModelForm.value[key]);
           }
         });
-        uploadData.append('myFile', this.fileInput, this.fileInput.name);
-        this.api.postData('carmodel/createModel', uploadData).subscribe((response) => {
+        console.log(this.addModelForm.value);
+        // uploadData.append('myFile', this.fileInput, this.fileInput.name);
+        // this.api.postData('carModel/createModel', uploadData).subscribe((response) => {
+        this.api.postData('carModel/createModel', this.addModelForm.value).subscribe((response) => {
+
            this.responseData = response;
            if (this.responseData.success) {
               this.msg = this.responseData.msg;
@@ -75,7 +79,7 @@ export class AddModelComponent implements OnInit {
   }
 
   getInitailData() {
-    this.api.getAllData('carmodel/getInfo').subscribe((response) => {
+    this.api.getAllData('carModel/getInfo').subscribe((response) => {
         console.log(response);
         this.responseData = response;
         if (this.responseData.success) {

@@ -9,3 +9,12 @@
 .sold{
     width: 100%
 }
+
+.imageUrl{
+    height: 60px;
+    max-width: 100%;
+}
+
+.imageContainer{
+    text-align: center;
+}

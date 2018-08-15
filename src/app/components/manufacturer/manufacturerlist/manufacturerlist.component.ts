@@ -35,6 +35,7 @@ export class ManufacturerlistComponent implements OnInit {
    get f() { return this.manufacturerForm.controls; }
 
   fetchData() {
+    this.manufacturerList = [];
     this.api.getAllData('manufacturer/getAllManufacturers').subscribe((response) => {
           this.responseData = response;
          if (this.responseData.success) {
@@ -59,24 +60,20 @@ export class ManufacturerlistComponent implements OnInit {
           if (this.responseData .success) {
               this.msg = this.responseData .msg;
               this.success = true;
+              setTimeout(function() {
+                this.success = false;
+                this.error = false;
+                const el: HTMLElement = this.close.nativeElement as HTMLElement;
+                el.click();
+                this.fetchData();
+                this.disabled = false;
+            }.bind(this), 3000);
           } else {
             this.msg = this.responseData .msg;
-              this.error = true;
+            this.error = true;
           }
-
-          setTimeout(function() {
-            this.success = false;
-            this.error = false;
-            const el: HTMLElement = this.close.nativeElement as HTMLElement;
-            el.click();
-            this.fetchData();
-            this.disabled = false;
-        }.bind(this), 3000);
     });
 }
 
-openModal() {
-  alert();
-}
 
 }

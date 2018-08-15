@@ -1,8 +1,6 @@
 <div class="loginContainer">
   <div id = "loginPage">
-      <div *ngIf="success" class="alert alert-success box-msg" role="alert">
-          {{msg}}
-        </div>
+    
         <div *ngIf="error" class="alert alert-danger box-msg" role="alert">
           {{msg}}
         </div>
@@ -30,7 +28,7 @@
           </div>
         </div>
         <div class="form-group">
-          <button [disabled]="disabled" class="btn btn-primary btn-md">Login</button>
+          <button  class="btn btn-primary btn-md">Login</button>
         </div>
       </form>
     </div>

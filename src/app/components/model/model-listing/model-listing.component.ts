@@ -16,6 +16,8 @@ export class ModelListingComponent implements OnInit {
   error: boolean;
   msg: boolean;
   disabled: boolean;
+  imageWebUrl = this.api.BASE_URL + 'assets/images/';
+
   constructor(private api: ApiService) { }
   @ViewChild('close') close: ElementRef;
   ngOnInit() {
@@ -27,7 +29,7 @@ export class ModelListingComponent implements OnInit {
   }
 
   getData() {
-    this.api.getAllData('carmodel/modelData').subscribe((response) => {
+    this.api.getAllData('carModel/modelData').subscribe((response) => {
       this.responseData = response;
       if (this.responseData.success) {
         this.modelList = this.responseData.result;
@@ -48,7 +50,7 @@ export class ModelListingComponent implements OnInit {
           id: id
     };
 
-    return this.api.postData('carmodel/soldModel', data).subscribe( (response) => {
+    return this.api.postData('carModel/soldModel', data).subscribe( (response) => {
       this.responseData = response;
       if (this.responseData.success) {
           this.success = true;
@@ -70,6 +72,10 @@ export class ModelListingComponent implements OnInit {
     }.bind(this), 2000);
 
     });
+  }
+
+  imageUrl(imageName) {
+      return this.api.BASE_URL + 'assets/images/' + imageName;
   }
 
 }

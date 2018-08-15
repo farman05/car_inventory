@@ -89,6 +89,11 @@
             </div>
           </div>
           <div class="row">
+              <div class="form-group imageContainer col-md-12">
+                <img src = "{{imageWebUrl}}{{data.image}}"   class="imageUrl"/>
+              </div>
+            </div>
+          <div class="row">
             <div class="form-group col-md-12">
               <button class="btn btn-md btn-primary sold" [disabled] = "disabled"  (click) = "sold(data.id)" >Sold</button>
             </div>

@@ -4,21 +4,21 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApiService {
-  BASE_URL = 'http://localhost:8888/car_inventory_api/';
+  // BASE_URL = 'http://localhost:8888/car_inventory_api/';
+  BASE_URL = 'https://cartestinginventory.000webhostapp.com/';
    headers;
   constructor(private http: HttpClient) {
-     this.headers = new Headers();
-      this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
   }
 
 
   getAllData(apiName) {
-      return this.http.get(this.BASE_URL + apiName, {headers: this.headers});
+      return this.http.get(this.BASE_URL + apiName);
   }
 
   postData(apiName, data) {
-        return this.http.post(this.BASE_URL + apiName, data, {headers: this.headers } );
+        return this.http.post(this.BASE_URL + apiName, data, {
+          headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})});
   }
 
 
